@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             ApiServices apiServices = ApiServices();
-            apiServices.getWeatherInfo();
+            apiServices.getWeatherInfo(-11.993044302705213, -77.00924362697712);
           },
         ),
         backgroundColor: Color(0xff272B2E),
