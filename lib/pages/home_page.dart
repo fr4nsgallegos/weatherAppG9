@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherappg9/services/api_services.dart';
 import 'package:weatherappg9/widgets/weather_item.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,6 +7,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            ApiServices apiServices = ApiServices();
+            apiServices.getWeatherInfo();
+          },
+        ),
         backgroundColor: Color(0xff272B2E),
         appBar: AppBar(
           actions: [
