@@ -15,6 +15,10 @@ class WeatherItem extends StatelessWidget {
       children: [
         Image.asset(
           "assets/images/$image.webp",
+          height: 50,
+        ),
+        SizedBox(
+          height: 8,
         ),
         Text(
           "$value $unit",

@@ -70,9 +70,27 @@ class HomePage extends StatelessWidget {
                     color: Colors.white,
                     height: 16,
                   ),
+                  SizedBox(
+                    height: 16,
+                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      WeatherItem(),
+                      WeatherItem(
+                        image: "windspeed",
+                        unit: "km/h",
+                        value: "18",
+                      ),
+                      WeatherItem(
+                        image: "humidity",
+                        unit: "%",
+                        value: "76",
+                      ),
+                      WeatherItem(
+                        image: "cloud",
+                        unit: "%",
+                        value: "58",
+                      ),
                     ],
                   )
                 ],
