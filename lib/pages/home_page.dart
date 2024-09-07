@@ -170,16 +170,20 @@ class _HomePageState extends State<HomePage> {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: [
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                        ForecastItemWidget(),
-                      ],
+                      children: List.generate(
+                        forecastModel!.forecast.forecastday[0].hour.length,
+                        (index) => ForecastItemWidget(
+                          isDay: forecastModel!
+                              .forecast.forecastday[0].hour[index].isDay,
+                          time: forecastModel!
+                              .forecast.forecastday[0].hour[index].time
+                              .toString()
+                              .substring(11, 16),
+                          value: forecastModel!
+                              .forecast.forecastday[0].hour[index].tempC
+                              .toString(),
+                        ),
+                      ),
                     ),
                   ),
                 ],

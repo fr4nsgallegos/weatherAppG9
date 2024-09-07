@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ForecastItemWidget extends StatelessWidget {
+  String time;
+  String value;
+  int isDay;
+
+  ForecastItemWidget({
+    required this.time,
+    required this.value,
+    required this.isDay,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 80,
       margin: EdgeInsets.only(right: 16, bottom: 16),
       padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
       decoration: BoxDecoration(
@@ -11,7 +22,9 @@ class ForecastItemWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(25),
         boxShadow: [
           BoxShadow(
-            color: Colors.blue.withOpacity(0.6),
+            color: isDay == 1
+                ? Colors.yellow.withOpacity(0.6)
+                : Colors.blue.withOpacity(0.6),
             blurRadius: 4,
             offset: Offset(4, 8),
           ),
@@ -20,17 +33,17 @@ class ForecastItemWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "00:00",
+            time,
             style: TextStyle(color: Colors.white),
           ),
           SizedBox(height: 8),
           Image.asset(
-            "assets/images/overcast.webp",
+            "assets/images/${isDay == 1 ? 'sunny' : 'overcast'}.webp",
             height: 50,
           ),
           SizedBox(height: 8),
           Text(
-            "5.5 °C",
+            "$value °C",
             style: TextStyle(color: Colors.white),
           )
         ],
