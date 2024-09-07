@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:weatherappg9/models/weather_model.dart';
 import 'package:weatherappg9/services/api_services.dart';
 import 'package:weatherappg9/widgets/weather_item.dart';
@@ -11,7 +12,30 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   WeatherModel? weatherModel;
 
+  Future<Position> getLocation() async {
+    bool _serviceEnabled;
+    LocationPermission _permission;
+
+    _serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!_serviceEnabled) {
+      return Future.error("Servicios de geolocalización deshabilitados");
+    }
+
+    _permission = await Geolocator.checkPermission();
+    if (_permission == LocationPermission.denied) {
+      _permission = await Geolocator.requestPermission();
+      if (_permission == LocationPermission.denied) {
+        return Future.error("Los permisos han sido denegados");
+      }
+    }
+    return await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+  }
+
   Future<void> getDataLocation() async {
+    Position position = await getLocation();
+    print(position);
     weatherModel = await ApiServices()
         .getWeatherInfo(-11.993044302705213, -77.00924362697712);
     setState(() {});
