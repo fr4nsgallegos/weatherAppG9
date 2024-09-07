@@ -40,4 +40,21 @@ class ApiServices {
     }
     return null;
   }
+
+  Future<ForecastModel?> getForecastCity(String city) async {
+    Uri url = Uri.parse(
+        "http://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$city&days=1&aqi=no&alerts=no");
+
+    http.Response response = await http.get(url);
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = json.decode(response.body);
+      ForecastModel weatherModel = ForecastModel.fromJson(data);
+      print(weatherModel.location.country);
+      // print(response.body);
+      return weatherModel;
+    }
+    return null;
+  }
 }
