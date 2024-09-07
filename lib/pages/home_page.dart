@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weatherappg9/models/weather_model.dart';
 import 'package:weatherappg9/services/api_services.dart';
+import 'package:weatherappg9/widgets/forecast_item_widget.dart';
 import 'package:weatherappg9/widgets/weather_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -149,7 +150,29 @@ class _HomePageState extends State<HomePage> {
                               value: weatherModel!.current.cloud.toString(),
                             ),
                           ],
-                        )
+                        ),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    "Forecast",
+                    style: TextStyle(color: Colors.white, fontSize: 30),
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
+                        ForecastItemWidget(),
                       ],
                     ),
                   ),
