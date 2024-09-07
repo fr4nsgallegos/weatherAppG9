@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
     Position position = await getLocation();
     print(position);
     weatherModel = await ApiServices()
-        .getWeatherInfo(-11.993044302705213, -77.00924362697712);
+        .getWeatherInfo(position.latitude, position.longitude);
     setState(() {});
   }
 
@@ -103,6 +103,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           "${weatherModel!.location.name}, ${weatherModel!.location.country}",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 18,
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                           "${weatherModel!.current.tempC}°",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 100,
+                            fontSize: MediaQuery.of(context).size.height / 10,
                           ),
                         ),
                         Divider(
